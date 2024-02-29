@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>House Cleaning</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+    <!-- from another code -->
+    <link rel="stylesheet" href="{% static 'web/css/jquery.fancybox.min.css' %}">
+    <link rel="stylesheet" href="{% static 'web/css/bootstrap-select.min.css' %}">
+    <link rel="stylesheet" href="{% static 'web/fonts/icomoon/style.css' %}">
+    <link rel="stylesheet" href="{% static 'web/fonts/line-icons/style.css' %}">
+    <link rel="stylesheet" href="{% static 'web/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'web/css/animate.min.css' %}">
+    <link rel="stylesheet" href="{% static 'web/css/quill.snow.css' %}">
+     <!-- from another code -->
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="{% static 'web/lib/animate/animate.min.css' %}" rel="stylesheet">
+    <link href="{% static 'web/lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{% static 'web/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="{% static 'web/css/style.css' %}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Replace the existing Nunito font with Roboto for headings */
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 700; /* You can adjust the font weight as needed */
+        }
+
+        /* Optional: If you want to change the font for the navigation */
+        .navbar-brand h1 {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        /* Optional: If you want to change the font for the body text */
+        body {
+            font-family: 'Open Sans', sans-serif; /* Keeping Open Sans for body text */
+        }
+    </style>
+
+    <style>
+
+        .bootstrap-select .filter-option {
+
+    font-weight: lighter;
+    color: #767474;
+    text-transform: capitalize;
+    font-size: 18px;
+}
+
+/* .bootstrap-select .dropdown-item:hover,
+.bootstrap-select .dropdown-item:focus {
+    background-color: #2bba34ba !important;
+    color: rgb(255, 255, 255) !important;
+} */
+    </style>
+
+</head>
+
+<body>
+
+
+    <!-- Navbar Start -->
+    <div class="container-fluid bg-dark">
+        <div class="container">
+            <nav class="navbar navbar-dark navbar-expand-lg py-lg-0">
+                <a href="index.html" class="navbar-brand">
+                    <h1 class="text-primary mb-0 display-5">Pure<span class="text-white">Clean</span></h1>
+                </a>
+                <button class="navbar-toggler bg-primary" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars text-dark"></span>
+                </button>
+                <div class="collapse navbar-collapse me-n3" id="navbarCollapse">
+                    <div class="navbar-nav ms-auto">
+                       <div class="navbar-nav ms-auto">
+                            <a href="{% url 'main_view' %}" class="nav-item nav-link active">Home</a>
+                            <a href="{% url 'about_view' %}" class="nav-item nav-link">About</a>
+                            <a href="{% url 'service_view' %}" class="nav-item nav-link">Services</a>
+                            <a href="{% url 'project_view' %}" class="nav-item nav-link">Projects</a>
+                            <a href="{% url 'contact_view' %}" class="nav-item nav-link">Contact</a>
+                            <a href="{% url 'blog_view' %}" class="nav-item nav-link">Blog</a>
+                            <a href="{% url 'booking_view' %}" class="nav-item nav-link">Book Now</a>
+                        </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar End -->
+
+
+    <!-- Page Header Start -->
+
+
+
+        <!-- Navbar Start -->
+
+        <!-- Navbar End -->
+
+
+        <!-- Page Header Start -->
+
+        <!-- Page Header End -->
+
+
+        <!-- pricing Start -->
+
+
+        <div class="container-fluid py-5">
+            <div class="container py-5">
+                <div class="text-center mb-5 wow fadeInUp" data-wow-delay=".3s">
+                    <h5 class="mb-2 px-3 py-1 text-dark rounded-pill d-inline-block border border-2 border-primary">Our Pricing</h5><br>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6 mx-auto wow fadeInUp" data-wow-delay=".5s">
+                        <h2 style="font-weight: 100; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">Book Now</h2>
+                        <div class="rounded contact-form">
+
+
+
+                            <div class="form-group mb-4 ">
+                                <form method="post" action="{% url 'booking_save' %}">
+                                    {% csrf_token %}
+                                <select id="country" class="form-control p-3" onchange="updateCities()" style="background-color:white! important" name="state">
+                                    <option value="">Select State</option>
+                                    <option value="Kerala">Kerala</option>
+                                    <option value="Tamilnadu">Tamilnadu</option>
+                                    <option value="Karnataka">Karnataka</option>
+
+                                </select><br>
+
+                            <div class="form-group mb-4">
+                                <select id="city" class="form-control p-3" style="background-color:white! important" name="city">
+                                    <option value="">Select City</option>
+                                    <!-- Cities will be dynamically populated based on the selected country -->
+                                </select><br>
+                                <select class="selectpicker border rounded mb-4 custom-drop services-dropdown" data-style="btn-black py-3" data-width="100%" title="Select Service" multiple onchange="calculateTotal()" name="services">
+                                    <option value="Office Cleaning" data-price="3000">Office Cleaning</option>
+                                    <option value="Pool Cleaning" data-price="2500">Pool Cleaning</option>
+                                    <option value="Kitchen Cleaning" data-price="2000">Kitchen Cleaning</option>
+                                    <option value="Deep Cleaning" data-price="3500">Deep Cleaning</option>
+                                    <option value="Garden Cleaning" data-price="1800">Garden Cleaning</option>
+                                    <option value="Window Cleaning" data-price="1200">Window Cleaning</option>
+                                    <option value="Carpet Cleaning" data-price="2800">Carpet Cleaning</option>
+                                    <option value="Roof Cleaning" data-price="4000">Roof Cleaning</option>
+                                </select>
+                            <div class="mb-4">
+                                <input type="text" class="form-control p-3" placeholder="Your Name" name="name">
+                            </div>
+                            <div class="mb-4">
+                                <input type="text" class="form-control p-3" placeholder="Phone" name="phone">
+                            </div>
+                            <div class="mb-4">
+                                <input type="email" class="form-control p-3" placeholder="Your Email" name="email">
+                            </div>
+
+
+                     <div class="mb-4">
+                                <input type="date" class="form-control p-3" placeholder="Select Date" name="date">
+                    </div>
+
+                    <div class="mb-4">
+                        <input id="totalInput" type="text" class="form-control p-3" placeholder="Total" readonly style="background-color:white! important" name="total">
+                    </div>
+                            <button class="btn btn-primary border-0 py-3 px-4 rounded-pill" type="submit">Book Now</button>
+
+                        </div>
+
+                                </form>
+                            </div>
+
+                </div>
+                        <!-- Your existing HTML content -->
+
+<!-- Your existing HTML content -->
+
+{% if obj.razorpay_order_id %}
+  <!-- Add a hidden button to trigger Razorpay form submission -->
+  <button id="razorpaySubmitBtn" style="display: none;"></button>
+  <script>
+    // Show the hidden button
+    document.getElementById('razorpaySubmitBtn').style.display = 'block';
+
+    // Add an event listener to the hidden button to trigger Razorpay form submission
+    document.getElementById('razorpaySubmitBtn').addEventListener('click', function () {
+      document.getElementById('razorpayForm').submit();
+    });
+  </script>
+{% endif %}
+
+<!-- Your existing Razorpay form -->
+<form id="razorpayForm" method="post" action="{% url 'success' %}">
+  {% csrf_token %}
+  <script
+    src="https://checkout.razorpay.com/v1/checkout.js"
+    data-key="rzp_test_KF7mvYLDwfWN0h"
+    data-amount="{{ payment.amount }}"
+    data-currency="INR"
+    data-order-id="{{ payment.id }}"
+    data-buttintext="Pay with Razorpay"
+    data-name=""
+    data-description="Test Transaction"
+    data-image=""
+    data-profile.name=""
+    data-profile.email=""
+    data-profile.contact="9922334456"
+    data-item.color="#F37254"
+  ></script>
+  <input type="hidden" custom="Hidden Element" name="hidden">
+</form>
+
+
+            </div>
+
+
+    <!-- Pricing End -->
+
+
+    <!-- Footer Start -->
+
+    <div class="container-fluid footer py-5 wow fadeIn" data-wow-delay=".3s">
+        <div class="container py-5">
+            <div class="row g-4 footer-inner">
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-item">
+                        <h4 class="text-white fw-bold mb-4">About PestKit.</h4>
+                        <p>Nostrud exertation ullamco labor nisi aliquip ex ea commodo consequat duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.</p>
+                        <p class="mb-0"><a class="" href="#">PestKit </a> &copy; 2023 All Right Reserved.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-item">
+                        <h4 class="text-white fw-bold mb-4">Usefull Link</h4>
+                        <div class="d-flex flex-column align-items-start">
+                            <a class="btn btn-link ps-0" href=""><i class="fa fa-check me-2"></i>About Us</a>
+                            <a class="btn btn-link ps-0" href=""><i class="fa fa-check me-2"></i>Contact Us</a>
+                            <a class="btn btn-link ps-0" href=""><i class="fa fa-check me-2"></i>Our Services</a>
+                            <a class="btn btn-link ps-0" href=""><i class="fa fa-check me-2"></i>Terms & Condition</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-item">
+                        <h4 class="text-white fw-bold mb-4">Services Link</h4>
+                        <div class="d-flex flex-column align-items-start">
+                            <a class="btn btn-link ps-0" href=""><i class="fa fa-check me-2"></i>Apartment Cleaning</a>
+                            <a class="btn btn-link ps-0" href=""><i class="fa fa-check me-2"></i>Office Cleaning</a>
+                            <a class="btn btn-link ps-0" href=""><i class="fa fa-check me-2"></i>Car Washing</a>
+                            <a class="btn btn-link ps-0" href=""><i class="fa fa-check me-2"></i>Green Cleaning</a>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-item">
+                        <h4 class="text-white fw-bold mb-4">Contact Us</h4>
+                        <a href="" class="btn btn-link w-100 text-start ps-0 pb-3 border-bottom rounded-0"><i class="fa fa-map-marker-alt me-3"></i>123 Street, CA, USA</a>
+                        <a href="" class="btn btn-link w-100 text-start ps-0 py-3 border-bottom rounded-0"><i class="fa fa-phone-alt me-3"></i>+012 345 67890</a>
+                        <a href="" class="btn btn-link w-100 text-start ps-0 py-3 border-bottom rounded-0"><i class="fa fa-envelope me-3"></i>info@example.com</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+
+    <!-- Copyright Start -->
+    <div class="container-fluid copyright bg-dark py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 text-center text-md-start mb-3 mb-md-0">
+                    <a href="#" class="text-primary mb-0 display-6">Pest<span class="text-white">Kit</span><i class="fa fa-spider text-primary ms-2"></i></a>
+                </div>
+                <div class="col-md-4 copyright-btn text-center text-md-start mb-3 mb-md-0 flex-shrink-0">
+                    <a class="btn btn-primary rounded-circle me-3 copyright-icon" href=""><i class="fab fa-twitter"></i></a>
+                    <a class="btn btn-primary rounded-circle me-3 copyright-icon" href=""><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-primary rounded-circle me-3 copyright-icon" href=""><i class="fab fa-youtube"></i></a>
+                    <a class="btn btn-primary rounded-circle me-3 copyright-icon" href=""><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <div class="col-md-4 my-auto text-center text-md-end text-white">
+                    <!--/** * This template is free as long as you keep the below author’s credit link/attribution link/backlink. ***/-->
+                    <!--/*** If you'd like to use the template without the below author’s credit link/attribution link/backlink, ***/-->
+                    <!--/*** you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". ***/-->
+                    Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary rounded-circle border-3 back-to-top"><i class="fa fa-arrow-up"></i></a>
+<!-- from another code -->
+<script src="{% static 'web/js/jquery.min.js' %}"></script>
+<script src="{% static 'web/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'web/js/bootstrap-select.min.js' %}"></script>
+<script src="{% static 'web/js/isotope.pkgd.min.js' %}"></script>
+<script src="{% static 'web/js/stickyfill.min.js' %}"></script>
+<script src="{% static 'web/js/jquery.fancybox.min.js' %}"></script>
+<script src="{% static 'web/js/jquery.easing.1.3.js' %}"></script>
+<script src="{% static 'web/js/jquery.waypoints.min.js' %}"></script>
+<script src="{% static 'web/js/jquery.animateNumber.min.js' %}"></script>
+<script src="{% static 'web/js/quill.min.js' %}"></script>
+
+<script src="{% static 'web/script.js' %}"></script>
+ <!-- from another code -->
+ <script>
+    $(document).ready(function () {
+        $('.selectpicker').selectpicker();
+    });
+</script>
+    <!-- JavaScript Libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'web/lib/wow/wow.min.js' %}"></script>
+    <script src="{% static 'web/lib/easing/easing.min.js' %}"></script>
+    <script src="{% static 'web/lib/waypoints/waypoints.min.js' %}"></script>
+    <script src="{% static 'web/lib/owlcarousel/owl.carousel.min.js' %}"></script>
+<!-- Template Javascript -->
+    <script src="{% static 'web/js/main.js' %}"></script>
+
+
+
+   <!-- Add this script to your HTML file -->
+
+<script>
+    $(document).ready(function () {
+        $('.selectpicker').selectpicker();
+
+        // Event listener for city dropdown change
+        $('#city').change(function () {
+            updateServices();
+        });
+    });
+
+    function updateCities() {
+        var countrySelect = document.getElementById("country");
+        var citySelect = document.getElementById("city");
+        var selectedCountry = countrySelect.value;
+
+        // Clear existing options
+        citySelect.innerHTML = '<option value="">Select City</option>';
+
+        // Add new options based on the selected country
+        if (selectedCountry === "Kerala") {
+            addCityOption("Wayanad");
+            addCityOption("Ernakulam");
+            addCityOption("Trivandum");
+            addCityOption("Thrissur");
+            // Add more cities as needed
+        } else if (selectedCountry === "Tamilnadu") {
+            addCityOption("Chennai");
+            addCityOption("Selam");
+            addCityOption("ooty");
+            addCityOption("coimbatore");
+            // Add cities for Tamilnadu
+        } else if (selectedCountry === "Karnataka") {
+            addCityOption("Bangaloor");
+            addCityOption("Mysoor");
+            addCityOption("udupi");
+            // Add cities for Karnataka
+        }
+        // Add more conditions for other countries
+
+        // Function to add a new city option
+        function addCityOption(cityName) {
+            var option = document.createElement("option");
+            option.value = cityName;
+            option.text = cityName;
+            citySelect.add(option);
+        }
+
+        // Update services when city changes
+        updateServices();
+    }
+
+    function updateServices() {
+        var citySelect = document.getElementById("city");
+        var selectedCity = citySelect.value;
+        var servicesSelect = document.getElementById("selected-jobs");
+
+        // Clear existing options
+        servicesSelect.innerHTML = '';
+
+        // Add new options based on the selected city
+        if (selectedCity === "Wayanad") {
+            addServiceOption("Service A");
+            addServiceOption("Service B");
+            // Add more services as needed
+        } else if (selectedCity === "Ernakulam") {
+            addServiceOption("Service C");
+            addServiceOption("Service D");
+            // Add services for Ernakulam
+        }
+        // Add more conditions for other cities
+
+        // Function to add a new service option
+        function addServiceOption(serviceName) {
+            var option = document.createElement("option");
+            option.value = serviceName;
+            option.text = serviceName;
+            servicesSelect.add(option);
+        }
+    }
+</script>
+
+<script>
+    function calculateTotal() {
+        var selectedOptions = document.querySelectorAll('.services-dropdown option:checked');
+        var totalPrice = 0;
+
+        selectedOptions.forEach(function (option) {
+            var optionPrice = parseInt(option.getAttribute('data-price'));
+            totalPrice += optionPrice;
+        });
+
+        // Update the Total input field
+        document.getElementById('totalInput').value = totalPrice;
+    }
+</script>
+
+
+
+
+<script>
+    // Add this script at the end to ensure other scripts have loaded
+    $(document).ready(function () {
+        $('.selectpicker').selectpicker();
+
+        // Event listener for city dropdown change
+        $('#city').change(function () {
+            updateServices();
+        });
+
+        // Event listener for submitting the form
+        $('#bookNowBtn').click(function () {
+            calculateTotal();
+            // Add any additional logic or checks before submitting the form
+            // For example, you may want to check if the total amount is greater than 0 before allowing the form submission.
+            // If yes, trigger the Razorpay payment process.
+            // If no, prevent the form submission or show an error message.
+        });
+    });
+</script>
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

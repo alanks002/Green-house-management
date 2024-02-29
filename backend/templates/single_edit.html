@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+{% extends 'index_back.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.min.css">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+</head>
+<body>
+<form method="post" action="{% url 'single_update' c_id=vdata.id %}" enctype="multipart/form-data">
+    {% csrf_token %}
+<div class="card">
+                  <div class="card-body" style="width:800px;">
+
+                    <h2>REGISTRATION</h2>
+                    <br>
+                    <form class="forms-sample">
+                      <div class="form-group">
+                        <label for="exampleInputName1">Title</label>
+                        <input type="text" class="form-control" id="exampleInputName1" name="Title" value="{{vdata.Title}}"  placeholder="Title">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputName1">Icon</label>
+                        <input type="text" class="form-control"  name="Icon" value="{{vdata.Icon}}"  placeholder="Icon">
+                      </div>
+                        <div class="form-group form-default">
+                            <label class="float-label">State</label>
+    <select class="selectpicker border rounded mb-4 custom-drop" name="State" data-style="btn-black py-3" data-width="100%" data-live-search="true" title="Select State" multiple>
+        {% for i in data %}
+            <option value="{{i.State}}">{{i.State}}</option>
+        {% endfor %}
+    </select>
+
+                 <div class="form-group">
+  <label>File upload</label>
+  <input type="file" name="Profile" value="{{vdata.Profile}}">
+
+</div>
+
+                      <button type="submit" class="btn btn-primary mr-2"> Submit </button>
+                      <button class="btn btn-light">Cancel</button>
+                    </form>
+                  </div>
+                </div>
+</form>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.selectpicker').selectpicker();
+    });
+</script>
+
+
+{% if messages %}
+    {% for i in messages %}
+         {% if i.tags == 'warning' %}
+     <script>
+         swal('{{i}}','','warning')
+     </script>
+     {% elif i.tags == 'error'%}
+     <script>
+         swal('{{i}}','','error')
+     </script>
+     {% elif i.tags == 'success'%}
+     <script>
+         swal('{{i}}','','success')
+     </script>
+     {% else %}
+     <script>
+         swal('{{i}}','','info')
+     </script>
+       {% endif%}
+    {% endfor %}
+    {% endif %}
+
+</body>
+</html>
+{% endblock %}

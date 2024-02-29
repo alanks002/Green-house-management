@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+{% extends 'index_back.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+<form method="post" action="{% url 'add_state' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+<div class="card">
+                  <div class="card-body" style="width:800px;">
+
+                    <h2>REGISTRATION</h2>
+                    <br>
+
+                      <div class="form-group">
+                        <label>State Name</label>
+                        <input type="text" class="form-control"  name="name"  placeholder="State">
+                      </div>
+
+</div>
+
+                      <button type="submit" class="btn btn-primary mr-2"> Submit </button>
+                      <button class="btn btn-light">Cancel</button>
+
+                  </div>
+                </div>
+</form>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+{% if messages %}
+    {% for i in messages %}
+         {% if i.tags == 'warning' %}
+     <script>
+         swal('{{i}}','','warning')
+     </script>
+     {% elif i.tags == 'error'%}
+     <script>
+         swal('{{i}}','','error')
+     </script>
+     {% elif i.tags == 'success'%}
+     <script>
+         swal('{{i}}','','success')
+     </script>
+     {% else %}
+     <script>
+         swal('{{i}}','','info')
+     </script>
+       {% endif%}
+    {% endfor %}
+    {% endif %}
+
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <title>House Cleaning</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="" name="keywords">
+        <meta content="" name="description">
+
+        <!-- Google Web Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">
+
+        <!-- Icon Font Stylesheet -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+        <!-- Libraries Stylesheet -->
+        <link href="{% static 'web/lib/animate/animate.min.css' %}" rel="stylesheet">
+        <link href="{% static 'web/lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+
+        <!-- Customized Bootstrap Stylesheet -->
+        <link href="{% static 'web/css/bootstrap.min.css '%}" rel="stylesheet">
+
+        <!-- Template Stylesheet -->
+        <link href="{% static 'web/css/style.css' %}" rel="stylesheet">
+        <!-- Add this inside the head section -->
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+
+        <style>
+            /* Replace the existing Nunito font with Roboto for headings */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700; /* You can adjust the font weight as needed */
+}
+
+/* Optional: If you want to change the font for the navigation */
+.navbar-brand h1 {
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Optional: If you want to change the font for the body text */
+body {
+    font-family: 'Open Sans', sans-serif; /* Keeping Open Sans for body text */
+}
+        </style>
+
+
+<style>/* Add this style to your existing CSS */
+
+    .services-inner-icon i {
+        transition: transform 0.3s ease; /* Add a smooth transition effect */
+    }
+
+    .services-inner-icon:hover i {
+        transform: scale(1.2); /* Scale up when hovering */
+    }
+
+    .services-inner-icon:hover i:active {
+        transform: scale(0.8); /* Scale down when clicking (optional) */
+    }
+    </style>
+    <style>
+        .form-control:disabled, .form-control:read-only {
+    background-color: white; /* Change to white or any other color you prefer */
+    opacity: 1;
+
+
+
+}
+
+    @media (min-width: 1200px) {
+        /* Styles for screens up to 1600px */
+        .form-group {
+            margin-bottom: 3rem;
+            width:600px ;
+        }
+    }
+    @media (min-width: 1550px) {
+    .customcontainer {
+        margin-left: 320px !important ;
+    }
+}
+
+
+
+
+    </style>
+    </head>
+
+    <body>
+        <!-- Spinner Start -->
+        <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-grow text-primary" role="status"></div>
+        </div>
+        <!-- Spinner End -->
+
+        <!-- Topbar Start -->
+
+        <!-- Topbar End -->
+
+
+        <!-- Navbar Start -->
+        <div class="container-fluid bg-dark">
+            <div class="container">
+                <nav class="navbar navbar-dark navbar-expand-lg py-lg-0">
+                    <a href="index.html" class="navbar-brand">
+                        <h1 class="text-primary mb-0 display-5">Pure<span class="text-white">Clean</span></h1>
+                    </a>
+                    <button class="navbar-toggler bg-primary" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                        <span class="fa fa-bars text-dark"></span>
+                    </button>
+                    <div class="collapse navbar-collapse me-n3" id="navbarCollapse">
+                        <div class="navbar-nav ms-auto">
+                            <a href="{% url 'main_view' %}" class="nav-item nav-link active">Home</a>
+                            <a href="{% url 'about_view' %}" class="nav-item nav-link">About</a>
+                            <a href="{% url 'service_view' %}" class="nav-item nav-link">Services</a>
+                            <a href="{% url 'project_view' %}" class="nav-item nav-link">Projects</a>
+                            <a href="{% url 'contact_view' %}" class="nav-item nav-link">Contact</a>
+                            <a href="{% url 'blog_view' %}" class="nav-item nav-link">Blog</a>
+                            <a href="{% url 'booking_view' %}" class="nav-item nav-link">Book Now</a>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <!-- Navbar End -->
+
+
+        <!-- Page Header Start -->
+        <div class="container-fluid page-header py-5">
+            <div class="container text-center py-5">
+                <h1 class="display-2 text-white mb-4 animated slideInDown">Services</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center mb-0 animated slideInDown">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                        <li class="breadcrumb-item text-white" aria-current="page">Services</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+
+</div>
+<!-- Add this inside the body tag after the existing content -->
+
+<div class="container customcontainer">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <h1 class="display-5 mb-4">Find Availability Of Our Service</h1>
+            <div class="form-group mb-4 ">
+                <label for="country">State:</label>
+                <select id="country" class="form-control p-3" onchange="updateCities()">
+                    <option value="">Select State</option>
+                    <option value="Kerala">Kerala</option>
+                    <option value="Tamilnadu">Tamilnadu</option>
+                    <option value="Karnataka">Karnataka</option>
+                    <!-- Add more countries as needed -->
+                </select>
+            </div>
+
+            <div class="form-group mb-4">
+                <label for="city">City:</label>
+                <select id="city" class="form-control p-3">
+                    <option value="">Select City</option>
+                    <!-- Cities will be dynamically populated based on the selected country -->
+                </select><br>
+               <button type="button" class="btn btn-primary border-0 rounded-pill px-4 py-3" onclick="showServices()">Learn More</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Services start -->
+
+<div class="container-fluid services py-5">
+            <div class="container text-center py-5">
+                <div class="text-center mb-5 wow fadeInUp" data-wow-delay=".3s">
+                    <h5 class="mb-2 px-3 py-1 text-dark rounded-pill d-inline-block border border-2 border-primary">Our Services</h5>
+                    <h1 class="display-5">How We Work </h1>
+                </div>
+
+                <div class="row g-5">
+                    {% for i in single %}
+                    <div class="col-xxl-3 col-lg-6 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay=".3s">
+                        <div class="bg-light rounded p-5 services-item">
+                            <div class="d-flex" style="align-items: center; justify-content: center;">
+                                <div class="mb-4 rounded-circle services-inner-icon">
+                                    <i  class="{{i.Icon}} text-primary"></i>
+                                </div>
+                            </div>
+                            <h4 name="Title">{{i.Title}}</h4>
+                            <p class="fs-5">Our office cleaning service is designed to create a clean and healthy work environment.</p>
+                            <a href="{% url 'single_service' g_id=i.id %}">
+                            <button type="button" class="btn btn-primary border-0 rounded-pill px-4 py-3">Learn More</button>
+                            </a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <button type="button" class="btn btn-primary border-0 rounded-pill px-4 py-3 mt-4 wow fadeInUp" data-wow-delay=".3s">More Services</button>
+            </div>
+        </div>
+
+
+
+        <!-- Services End -->
+
+
+        <!-- Testiminial Start -->
+        <div class="container-fluid testimonial py-5">
+            <div class="container py-5">
+                <div class="text-center mb-5 wow fadeInUp" data-wow-delay=".3s">
+                    <h5 class="mb-2 px-3 py-1 text-dark rounded-pill d-inline-block border border-2 border-primary"> customer review</h5><br><br>
+                    <h1 class="display-5 w-50 mx-auto">What Clients Say About Our Services</h1>
+                </div>
+                <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay=".5s">
+                    <div class="testimonial-item">
+                        <div class="testimonial-content rounded mb-4 p-4">
+                            <p class="fs-5 m-0">was the best decision for my home! Their attention to detail is unmatched, and the team is not only efficient but also incredibly respectful. My house has never looked this clean, and I couldn't be happier with the service they provided!"</p>
+                        </div>
+                        <div class="d-flex align-items-center  mb-4" style="padding: 0 0 0 25px;">
+                            <div class="position-relative">
+                                <img src="img/testimonial-1.jpg" class="img-fluid rounded-circle py-2" alt="">
+                                <div class="position-absolute" style="top: 33px; left: -25px;">
+                                    <i class="fa fa-quote-left rounded-pill bg-primary text-dark p-3"></i>
+                                </div>
+                            </div>
+                            <div class="ms-3">
+                                <h4 class="mb-0">Client Name</h4>
+                                <p class="mb-1">Profession</p>
+                                <div class="d-flex">
+                                    <small class="fas fa-star text-primary me-1"></small>
+                                    <small class="fas fa-star text-primary me-1"></small>
+                                    <small class="fas fa-star text-primary me-1"></small>
+                                    <small class="fas fa-star text-primary me-1"></small>
+                                    <small class="fas fa-star text-primary me-1"></small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-item">
+                        <div class="testimonial-content rounded mb-4 p-4">
+                            <p class="fs-5 m-0">was the best decision for my home! Their attention to detail is unmatched, and the team is not only efficient but also incredibly respectful. My house has never looked this clean, and I couldn't be happier with the service they provided!"</p>
+                        </div>
+                        <div class="d-flex align-items-center  mb-4" style="padding: 0 0 0 25px;">
+                            <div class="position-relative">
+                                <img src="img/testimonial-2.jpg" class="img-fluid rounded-circle py-2" alt="">
+                                <div class="position-absolute" style="top: 33px; left: -25px;">
+                                    <i class="fa fa-quote-left rounded-pill bg-primary text-dark p-3"></i>
+                                </div>
+                            </div>
+                            <div class="ms-3">
+                                <h4 class="mb-0">Client Name</h4>
+                                <p class="mb-1">Profession</p>
+                                <div class="d-flex">
+                                    <small class="fas fa-star text-primary me-1"></small>
+                                    <small class="fas fa-star text-primary me-1"></small>
+                                    <small class="fas fa-star text-primary me-1"></small>
+                                    <small class="fas fa-star text-primary me-1"></small>
+                                    <small class="fas fa-star text-primary me-1"></small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-item">
+                        <div class="testimonial-content rounded mb-4 p-4">
+                            <p class="fs-5 m-0">was the best decision for my home! Their attention to detail is unmatched, and the team is not only efficient but also incredibly respectful. My house has never looked this clean, and I couldn't be happier with the service they provided!".</p>
+                        </div>
+                        <div class="d-flex align-items-center  mb-4" style="padding: 0 0 0 25px;">
+                            <div class="position-relative">
+                                <img src="img/testimonial-3.jpg" class="img-fluid rounded-circle py-2" alt="">
+                                <div class="position-absolute" style="top: 33px; left: -25px;">
+                                    <i class="fa fa-quote-left rounded-pill bg-primary text-dark p-3"></i>
+                                </div>
+                            </div>
+                            <div class="ms-3">
+                                <h4 class="mb-0">Client Name</h4>
+                                <p class="mb-1">Profession</p>
+                                <div class="d-flex">
+                                    <small class="fas fa-star text-primary me-1"></small>
+                                    <small class="fas fa-star text-primary me-1"></small>
+                                    <small class="fas fa-star text-primary me-1"></small>
+                                    <small class="fas fa-star text-primary me-1"></small>
+                                    <small class="fas fa-star text-primary me-1"></small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-item">
+                        <div class="testimonial-content rounded mb-4 p-4">
+                            <p class="fs-5 m-0"></p>
+                        </div>
+                        <div class="d-flex align-items-center  mb-4" style="padding: 0 0 0 25px;">
+                            <div class="position-relative">
+                                <img src="img/testimonial-4.jpg" class="img-fluid rounded-circle py-2" alt="">
+                                <div class="position-absolute" style="top: 33px; left: -25px;">
+                                    <i class="fa fa-quote-left rounded-pill bg-primary text-dark p-3"></i>
+                                </div>
+                            </div>
+                            <div class="ms-3">
+                                <h4 class="mb-0">Client Name</h4>
+                                <p class="mb-1">Profession</p>
+                                <div class="d-flex">
+                                    <small class="fas fa-star text-primary me-1"></small>
+                                    <small class="fas fa-star text-primary me-1"></small>
+                                    <small class="fas fa-star text-primary me-1"></small>
+                                    <small class="fas fa-star text-primary me-1"></small>
+                                    <small class="fas fa-star text-primary me-1"></small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Testiminial End -->
+
+
+        <!-- Footer Start -->
+        <div class="container-fluid footer py-5 wow fadeIn" data-wow-delay=".3s">
+            <div class="container py-5">
+                <div class="row g-4 footer-inner">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="footer-item">
+                            <h4 class="text-white fw-bold mb-4">About.</h4>
+                            <p>Nostrud exertation ullamco labor nisi aliquip ex ea commodo consequat duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.</p>
+                            <p class="mb-0"><a class="" href="#">Pure Clean </a> &copy; 2023 All Right Reserved.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="footer-item">
+                            <h4 class="text-white fw-bold mb-4">Usefull Link</h4>
+                            <div class="d-flex flex-column align-items-start">
+                                <a class="btn btn-link ps-0" href=""><i class="fa fa-check me-2"></i>About Us</a>
+                                <a class="btn btn-link ps-0" href=""><i class="fa fa-check me-2"></i>Contact Us</a>
+                                <a class="btn btn-link ps-0" href=""><i class="fa fa-check me-2"></i>Our Services</a>
+                                <a class="btn btn-link ps-0" href=""><i class="fa fa-check me-2"></i>Terms & Condition</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="footer-item">
+                            <h4 class="text-white fw-bold mb-4">Services Link</h4>
+                            <div class="d-flex flex-column align-items-start">
+                                <a class="btn btn-link ps-0" href=""><i class="fa fa-check me-2"></i>Apartment Cleaning</a>
+                                <a class="btn btn-link ps-0" href=""><i class="fa fa-check me-2"></i>Office Cleaning</a>
+                                <a class="btn btn-link ps-0" href=""><i class="fa fa-check me-2"></i>Car Washing</a>
+                                <a class="btn btn-link ps-0" href=""><i class="fa fa-check me-2"></i>Green Cleaning</a>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="footer-item">
+                            <h4 class="text-white fw-bold mb-4">Contact Us</h4>
+                            <a href="" class="btn btn-link w-100 text-start ps-0 pb-3 border-bottom rounded-0"><i class="fa fa-map-marker-alt me-3"></i>123 Street, CA, USA</a>
+                            <a href="" class="btn btn-link w-100 text-start ps-0 py-3 border-bottom rounded-0"><i class="fa fa-phone-alt me-3"></i>+012 345 67890</a>
+                            <a href="" class="btn btn-link w-100 text-start ps-0 py-3 border-bottom rounded-0"><i class="fa fa-envelope me-3"></i>info@example.com</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer End -->
+
+
+
+        <!-- Copyright Start -->
+        <div class="container-fluid copyright bg-dark py-4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 text-center text-md-start mb-3 mb-md-0">
+                        <a href="#" class="text-primary mb-0 display-6">Pure<span class="text-white">Clean</span></a>
+                    </div>
+                    <div class="col-md-4 copyright-btn text-center text-md-start mb-3 mb-md-0 flex-shrink-0">
+                        <a class="btn btn-primary rounded-circle me-3 copyright-icon" href=""><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-primary rounded-circle me-3 copyright-icon" href=""><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-primary rounded-circle me-3 copyright-icon" href=""><i class="fab fa-youtube"></i></a>
+                        <a class="btn btn-primary rounded-circle me-3 copyright-icon" href=""><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                    <div class="col-md-4 my-auto text-center text-md-end text-white">
+                        <!--/*** This template is free as long as you keep the below author’s credit link/attribution link/backlink. ***/-->
+                        <!--/*** If you'd like to use the template without the below author’s credit link/attribution link/backlink, ***/-->
+                        <!--/*** you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". ***/-->
+                        Designed By <a class="border-bottom" href="https://htmlcodex.com">ALAN K S</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Copyright End -->
+
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-primary rounded-circle border-3 back-to-top"><i class="fa fa-arrow-up"></i></a>
+
+
+        <!-- JavaScript Libraries -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="{% static 'web/lib/wow/wow.min.js' %}"></script>
+        <script src="{% static 'web/lib/easing/easing.min.js' %}"></script>
+        <script src="{% static 'web/lib/waypoints/waypoints.min.js' %}"></script>
+        <script src="{% static 'web/lib/owlcarousel/owl.carousel.min.js' %}"></script>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'web/lib/wow/wow.min.js' %}"></script>
+    <script src="{% static 'web/lib/easing/easing.min.js' %}"></script>
+    <script src="{% static 'web/lib/waypoints/waypoints.min.js' %}"></script>
+    <script src="{% static 'web/lib/owlcarousel/owl.carousel.min.js' %}"></script>
+
+        <!-- Template Javascript -->
+        <script src="{% static 'web/js/main.js' %}"></script>
+        <script>
+            // ... (your existing scripts)
+
+            const cities = {
+                Kerala: ["Ernakulam", "Trivandum", "Kottayam", "Wayanad","Thrissur"],
+                Tamilnadu: ["Selam", "coimbatore", "Ooty", "Chennai"],
+                Karnataka:["Bangaloor","udupi","Mysoor","Hubli"]
+                // Add more cities for other countries
+            };
+
+            function updateCities() {
+                const countrySelect = document.getElementById("country");
+                const citySelect = document.getElementById("city");
+                const selectedCountry = countrySelect.value;
+
+                // Clear previous cities
+                citySelect.innerHTML = '<option value="">Select City</option>';
+
+                if (selectedCountry && cities[selectedCountry]) {
+                    // Populate cities based on the selected country
+                    cities[selectedCountry].forEach(city => {
+                        const option = document.createElement("option");
+                        option.value = city;
+                        option.text = city;
+                        citySelect.add(option);
+                    });
+                }
+            }
+        </script>
+
+<script>
+    // ... (your existing scripts)
+
+    function showServices() {
+        var selectedState = document.getElementById("country").value;
+        var selectedCity = document.getElementById("city").value;
+
+        if (selectedState && selectedCity) {
+            // Call a function to dynamically update the services section based on the selected state and city
+            updateServices(selectedState, selectedCity);
+        } else {
+            alert("Please select both State and City before proceeding.");
+        }
+    }
+
+    function updateServices(state, city) {
+        var servicesContainer = document.querySelector('.services');
+        var servicesContent = getServicesContent(state, city);
+
+        if (servicesContent) {
+            servicesContainer.innerHTML = servicesContent;
+        } else {
+            alert("No services available for the selected State and City.");
+        }
+    }
+
+
+
+
+    function getServicesContent(state, city) {
+        // Define services for each state and city combination
+        var servicesData = {
+            "Kerala": {
+                "Wayanad": [
+                    { icon: "fas fa-tree", title: "Garden Cleaning", description: "Restore the beauty of your garden with our meticulous cleaning services." },
+                    { icon: "fas fa-window-maximize", title: "Window", description: "Enhance the clarity of your surroundings with our professionals." },
+                    { icon: "fas fa-broom", title: "Carpet Cleaning", description: "Revitalize your carpets with our expert cleaning services." },
+                    { icon: "fas fa-paint-roller", title: "Roof Cleaning", description: "Restore the freshness of your walls with our professionals." }
+                ],
+
+                "Ernakulam": [
+                    {icon:"fas fa-utensils",title:"Kitchen Cleaning",description:"Transform your kitchen with our thorough cleaning services.Ensure crystal-clear water."},
+                    {icon: "fas fa-dumpster ", title: "Deep Cleaning", description: "Experience a thorough transformation with our deep cleaning services." },
+                    { icon: "fas fa-paint-roller", title: "Roof Cleaning", description: "Restore the freshness of your walls with our professionals" },
+                    { icon: "fas fa-broom", title: "Carpet Cleaning", description: "Revitalize your carpets with our expert cleaning services." },
+                    { icon: "fas fa-paint-roller", title: "Roof Cleaning", description: "Restore the freshness of your walls with our professionals." },
+                    { icon: "fas fa-window-maximize", title: "Window", description: "Enhance the clarity of your surroundings with our professionals." },
+                ],
+
+                "Trivandum": [
+
+                    { icon: "fas fa-tree", title: "Garden Cleaning", description: "Restore the beauty of your garden with our meticulous cleaning services." },
+                    {icon: "fas fa-dumpster ", title: "Deep Cleaning", description: "Experience a thorough transformation with our deep cleaning services." },
+                    { icon: "fas fa-paint-roller", title: "Roof Cleaning", description: "Restore the freshness of your walls with our professionals" },
+                    { icon: "fas fa-broom", title: "Carpet Cleaning", description: "Revitalize your carpets with our expert cleaning services." },
+            ],
+            "Thrissur":[
+                    {icon:"fas fa-utensils",title:"Kitchen Cleaning",description:"Transform your kitchen with our thorough cleaning services.Ensure crystal-clear water."},
+                    {icon:"fas fa-swimming-pool",title:"Pool Cleaning",description:"Our pool cleaning service is dedicated to maintain clear waters and a safe swim.."},
+                    { icon: "fas fa-paint-roller", title: "Roof Cleaning", description: "Restore the freshness of your walls with our professionals" },
+
+
+            ],
+                // Add more cities and services as needed
+            },
+            "Tamilnadu": {
+                "Chennai": [
+                    {icon:"fas fa-utensils",title:"Kitchen Cleaning",description:"Transform your kitchen with our thorough cleaning services.Ensure."},
+                    {icon: "fas fa-dumpster ", title: "Deep Cleaning", description: "Experience a thorough transformation with our deep cleaning." },
+                    { icon: "fas fa-paint-roller", title: "Roof Cleaning", description: "Restore the freshness of your walls with our professionals" },
+                    { icon: "fas fa-broom", title: "Carpet Cleaning", description: "Revitalize your carpets with our expert cleaning services." },
+                ],
+
+                "Selam": [
+
+                    { icon: "fas fa-tree", title: "Garden Cleaning", description: "Restore the beauty of your garden with our meticulous cleaning services." },
+                    {icon: "fas fa-dumpster ", title: "Deep Cleaning", description: "Experience a thorough transformation with our deep cleaning services." },
+                    { icon: "fas fa-paint-roller", title: "Roof Cleaning", description: "Restore the freshness of your walls with our professionals" },
+                    { icon: "fas fa-broom", title: "Carpet Cleaning", description: "Revitalize your carpets with our expert cleaning services." },
+            ],
+
+            "ooty": [
+                    {icon:"fas fa-utensils",title:"Kitchen Cleaning",description:"Transform your kitchen with our thorough cleaning services.Ensure crystal-clear water."},
+                    {icon: "fas fa-dumpster ", title: "Deep Cleaning", description: "Experience a thorough transformation with our deep cleaning services." },
+                    { icon: "fas fa-paint-roller", title: "Roof Cleaning", description: "Restore the freshness of your walls with our professionals" },
+                    { icon: "fas fa-broom", title: "Carpet Cleaning", description: "Revitalize your carpets with our expert cleaning services." },
+                    { icon: "fas fa-paint-roller", title: "Roof Cleaning", description: "Restore the freshness of your walls with our professionals." },
+                    { icon: "fas fa-window-maximize", title: "Window", description: "Enhance the clarity of your surroundings with our professionals." },
+                ],
+
+            "coimbatore":[
+
+                    { icon: "fas fa-tree", title: "Garden Cleaning", description: "Restore the beauty of your garden with our meticulous cleaning services." },
+                    { icon: "fas fa-window-maximize", title: "Window", description: "Enhance the clarity of your surroundings with our professionals." },
+                    { icon: "fas fa-broom", title: "Carpet Cleaning", description: "Revitalize your carpets with our expert cleaning services." },
+                    { icon: "fas fa-paint-roller", title: "Roof Cleaning", description: "Restore the freshness of your walls with our professionals." }
+                ],
+
+            },
+            "Karnataka": {
+                "Bangaloor": [
+                    { icon: "fas fa-tree", title: "Garden Cleaning", description: "Restore the beauty of your garden with our meticulous cleaning services." },
+                    { icon: "fas fa-window-maximize", title: "Window", description: "Enhance the clarity of your surroundings with our professionals." },
+                    { icon: "fas fa-broom", title: "Carpet Cleaning", description: "Revitalize your carpets with our expert cleaning services." },
+                    { icon: "fas fa-paint-roller", title: "Roof Cleaning", description: "Restore the freshness of your walls with our professionals." }
+                ],
+
+            "Mysoor": [
+                    {icon:"fas fa-utensils",title:"Kitchen Cleaning",description:"Transform your kitchen with our thorough cleaning services.Ensure crystal-clear water."},
+                    {icon: "fas fa-dumpster ", title: "Deep Cleaning", description: "Experience a thorough transformation with our deep cleaning services." },
+                    { icon: "fas fa-paint-roller", title: "Roof Cleaning", description: "Restore the freshness of your walls with our professionals" },
+                    { icon: "fas fa-broom", title: "Carpet Cleaning", description: "Revitalize your carpets with our expert cleaning services." },
+                    { icon: "fas fa-paint-roller", title: "Roof Cleaning", description: "Restore the freshness of your walls with our professionals." },
+                    { icon: "fas fa-window-maximize", title: "Window", description: "Enhance the clarity of your surroundings with our professionals." },
+                ],
+
+            "udupi":[
+                    {icon:"fas fa-utensils",title:"Kitchen Cleaning",description:"Transform your kitchen with our thorough cleaning services.Ensure crystal-clear water."},
+                    {icon:"fas fa-swimming-pool",title:"Pool Cleaning",description:"Our pool cleaning service is dedicated to maintain clear waters and a safe swim.."},
+            ],
+
+
+
+            },
+            // Add more states and their respective services as needed
+
+        };
+
+        // Check if services are available for the selected state and city
+        if (servicesData[state] && servicesData[state][city]) {
+            var services = servicesData[state][city];
+            // Generate HTML content based on the services
+            var servicesHTML = services.map(service => `
+                <div class="col-xxl-3 col-lg-6 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay=".3s">
+                    <div class="bg-light rounded p-5 services-item">
+                        <div class="d-flex" style="align-items: center; justify-content: center;">
+                            <div class="mb-4 rounded-circle services-inner-icon">
+                                <!-- Use icons or images for each service if needed -->
+                                <i class="${service.icon} fa-3x text-primary"></i>
+                            </div>
+                        </div>
+                        <h4>${service.title}</h4>
+                        <p class="fs-5">${service.description}</p>
+                        <button type="button" class="btn btn-primary border-0 rounded-pill px-4 py-3">Learn More</button>
+                    </div>
+                </div>
+            `).join('');
+
+            // Return the generated HTML content
+            return `
+                <div class="container text-center py-5">
+                    <h1 class="display-5">Services for ${state}, ${city}</h1>
+                    <div class="row g-5">
+                        ${servicesHTML}
+                    </div>
+                </div>
+            `;
+        } else {
+            return null; // No services available for the selected state and city
+        }
+    }
+</script>
+
+        <!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+</body>
+
+</html>

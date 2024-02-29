@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Reset Verification</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Styles for the container box */
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+body {
+	background-image: url("{% static 'web/img/2156719.jpg' %}");
+    background-size:cover;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	font-family: 'Montserrat', sans-serif;
+	height: 100vh;
+	margin: -30px 0 50px;
+}
+
+
+       .container {
+    width: 400px; /* Adjust width as needed */
+    padding: 20px;
+    border: 2px solid #ccc !important; /* Add !important to ensure the border is applied */
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+        /* Styles for the countdown text */
+        #countdown {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        /* Styles for the time remaining word */
+        .time-remaining {
+            color: red;
+            font-weight: bold;
+        }
+
+        /* Styles for the time remaining value */
+        .time-value {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+
+</head>
+<body>
+   <div class="container">
+        <div class="d-flex align-items-center">
+            <div>
+                <img src="{% static 'web/img/icon__ticks.jpg' %}" alt="Green Tick Icon" style="width: 25px;margin-right:6px;">
+            </div>
+    <p style="font-size:18px;" > A verification link has been sent to your email.</p>
+    <p style="margin-top:-10px;font-size:18px;"> Please check it before it expires.</p>
+</div>
+        <div id="countdown" class="text-center mt-3">
+            <span class="time-remaining">Time remaining:</span> <span class="time-value" id="time-value"></span>
+        </div>
+    </div>
+
+   <script>
+    // Get expiration time in milliseconds from the Django view
+    var expirationMinutes = {{ expiration_minutes }} * 60 * 1000;
+    var countdownElement = document.getElementById('time-value');
+
+    function countdown() {
+        var now = new Date().getTime();
+        var distance = expirationMinutes - (now - startTime);
+
+        var minutes = Math.floor(distance / (1000 * 60)); // Calculate minutes remaining
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000); // Calculate seconds remaining
+
+        if (distance <= 0) {
+            clearInterval(timerInterval);
+            countdownElement.innerHTML = "Expired";
+            setTimeout(function() {
+                window.location.href = "/frontend/forgot_password/"; // Redirect to forgot password page
+            }, 3000); // Redirect after 2 seconds
+        } else {
+            countdownElement.innerHTML = minutes + "m " + seconds + "s";
+        }
+    }
+
+    // Start countdown when the page is loaded
+    var startTime = new Date().getTime();
+    countdown();
+    var timerInterval = setInterval(countdown, 1000);
+</script>
+
+</body>
+</html>
